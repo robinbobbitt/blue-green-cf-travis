@@ -1,5 +1,6 @@
 applications:
 - name: blue-green-cf-travis
+  memory: 256M
   env:
     GIT_COMMIT: <GIT_COMMIT>
     DEPLOY_TIMESTAMP: <DEPLOY_TIMESTAMP>
