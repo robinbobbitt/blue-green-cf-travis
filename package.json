@@ -1,0 +1,13 @@
+{
+  "name": "blue-green-cf-travis",
+  "version": "1.0.0",
+  "description": "Blue-Green Deploy a node app to Cloud Foundry using Travis",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Run your unit tests here\""
+  },
+  "author": "Robin Bobbitt",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

@@ -1,0 +1,6 @@
+applications:
+- name: blue-green-cf-travis
+  env:
+    GIT_COMMIT: <GIT_COMMIT>
+    DEPLOY_TIMESTAMP: <DEPLOY_TIMESTAMP>
+    TRAVIS_BUILD_ID: <TRAVIS_BUILD_ID>

@@ -1,0 +1,26 @@
+language: node_js
+
+node_js:
+  - "8.9.4"
+
+before_deploy:
+  - echo "Installing cf cli"
+  - test x$TRAVIS_OS_NAME = "xlinux" && rel="linux64-binary" || rel="macosx64"; wget "https://cli.run.pivotal.io/stable?release=${rel}&source=github" -qO cf.tgz && tar -zxvf cf.tgz && rm cf.tgz
+  - export PATH="$PATH:."
+  - cf --version
+ 
+  - echo "Installing cf blue-green deploy plugin"
+  - cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
+  - cf install-plugin blue-green-deploy -r CF-Community -f
+  - export DEPLOY_TIMESTAMP=`date +'%Y%m%d-%H%M%S'`
+
+deploy:
+  # on build request for master branch we deploy to Cloud Foundry
+  - provider: script
+    skip_cleanup: true
+    script:  ./scripts/cf-blue-green-deploy.sh blue-green-cf-travis manifest.yml prod
+    on:
+      branch: master
+
+after_script:
+  - echo "Run your full suite of automated regression tests here"
