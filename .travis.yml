@@ -15,7 +15,7 @@ before_deploy:
   - export DEPLOY_TIMESTAMP=`date +'%Y%m%d-%H%M%S'`
 
 deploy:
-  # on build request for master branch we deploy to Cloud Foundry
+  # on update to master branch we deploy to Cloud Foundry
   - provider: script
     skip_cleanup: true
     script:  ./scripts/cf-blue-green-deploy.sh blue-green-cf-travis manifest.yml prod
